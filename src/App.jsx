@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
-import TrainerPage from "./home";
-import Pokemons from "./cards"
-import Pokemon from "./card";
-import Pokemon2 from "./card2";
+import TrainerPage from "./pages/home/home";
+import Pokemons from "./pages/team/cards"
+import Pokemon from "./pages/p1/card"
+import Pokemon2 from "./pages/p2/card2";
 
 function App(){
    return(

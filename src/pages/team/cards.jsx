@@ -1,65 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './cards.css';
 
+import soculos from '../../assets/soculos.png';
+import treecko2 from '../../assets/t.png';
 
+import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
 
 function App() {
 
-  const [squirtle, setSquirtle] = useState(null);
-  const [treecko, setTreecko] = useState(null);
+  const {
+    pokemon: squirtle,
+    loading: loadingSquirtle,
+    error: errorSquirtle
+  } = UseFetchPokemon("squirtle");
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const {
+    pokemon: treecko,
+    loading: loadingTreecko,
+    error: errorTreecko
+  } = UseFetchPokemon("treecko");
 
-  useEffect(() => {
+  if (loadingSquirtle || loadingTreecko) {
 
-    const getData = async () => {
-
-      try {
-
-        const squirtleRes = await axios.get(
-          'https://pokeapi.co/api/v2/pokemon/squirtle'
-        );
-
-        const treeckoRes = await axios.get(
-          'https://pokeapi.co/api/v2/pokemon/treecko'
-        );
-
-        setSquirtle(squirtleRes.data);
-        setTreecko(treeckoRes.data);
-
-        setLoading(false);
-
-      } catch (err) {
-
-        console.error("Erro ao carregar API", err);
-
-        setError(true);
-        setLoading(false);
-
-      }
-
-    };
-
-    getData();
-
-  }, []);
-
-  if (loading) {
     return (
       <div className="loader">
         Carregando Pokédex...
       </div>
     );
+
   }
 
-  if (error) {
+  if (errorSquirtle || errorTreecko) {
+
     return (
       <div className="error">
         Ocorreu um erro inesperado
       </div>
     );
+
   }
 
   return (
@@ -77,7 +54,7 @@ function App() {
           <h3>{squirtle.name}</h3>
 
           <img
-            src="/soculos.png"
+            src={soculos}
             alt="squirtle"
             className="pokemon"
           />
@@ -86,25 +63,21 @@ function App() {
 
             <p>
               <strong>HP:</strong>
-              {' '}
               {squirtle.stats[0].base_stat}
             </p>
 
             <p>
               <strong>Attack:</strong>
-              {' '}
               {squirtle.stats[1].base_stat}
             </p>
 
             <p>
               <strong>Defense:</strong>
-              {' '}
               {squirtle.stats[2].base_stat}
             </p>
 
             <p>
               <strong>Speed:</strong>
-              {' '}
               {squirtle.stats[5].base_stat}
             </p>
 
@@ -134,8 +107,8 @@ function App() {
           <h3>{treecko.name}</h3>
 
           <img
-            src="/t.png"
-            alt="squirtle"
+            src={treecko2}
+            alt="treecko"
             className="pokemon"
           />
 
@@ -143,25 +116,21 @@ function App() {
 
             <p>
               <strong>HP:</strong>
-              {' '}
               {treecko.stats[0].base_stat}
             </p>
 
             <p>
               <strong>Attack:</strong>
-              {' '}
               {treecko.stats[1].base_stat}
             </p>
 
             <p>
               <strong>Defense:</strong>
-              {' '}
               {treecko.stats[2].base_stat}
             </p>
 
             <p>
               <strong>Speed:</strong>
-              {' '}
               {treecko.stats[5].base_stat}
             </p>
 
