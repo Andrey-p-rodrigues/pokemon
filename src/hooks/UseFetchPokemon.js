@@ -33,7 +33,7 @@ export function UseFetchPokemon(poke) {
 
     getData();
 
-  }, [pokemon]);
+  }, [poke]);
 
   return {
     pokemon,

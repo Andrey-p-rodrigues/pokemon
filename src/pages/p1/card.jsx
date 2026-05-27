@@ -1,5 +1,4 @@
 import './card.css';
-import soculos from '../../assets/soculos.png';
 import {useParams} from "react-router-dom";
 
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";

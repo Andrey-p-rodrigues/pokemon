@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, BrowserRouter, Routes, useParams } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 import TrainerPage from "./pages/home/home";
 import Pokemons from "./pages/team/cards"
