@@ -19,7 +19,14 @@ function App() {
     error: errorTreecko
   } = UseFetchPokemon("treecko");
 
-  if (loadingSquirtle || loadingTreecko) {
+  const {
+    pokemon: gastly,
+    loading: loadinggastly,
+    error: errorgastly
+  } = UseFetchPokemon("gastly");
+
+
+  if (loadingSquirtle || loadingTreecko || loadinggastly) {
 
     return (
       <div className="loader">
@@ -29,7 +36,7 @@ function App() {
 
   }
 
-  if (errorSquirtle || errorTreecko) {
+  if (errorSquirtle || errorTreecko || errorgastly) {
 
     return (
       <div className="error">
@@ -54,7 +61,7 @@ function App() {
           <h3>{squirtle.name}</h3>
 
           <img
-            src={soculos}
+            src={squirtle.sprites.front_default}
             alt="squirtle"
             className="pokemon"
           />
@@ -107,7 +114,7 @@ function App() {
           <h3>{treecko.name}</h3>
 
           <img
-            src={treecko2}
+            src={treecko.sprites.front_default}
             alt="treecko"
             className="pokemon"
           />
@@ -139,6 +146,57 @@ function App() {
           <div className="types">
 
             {treecko.types.map((type, index) => (
+
+              <span
+                key={index}
+                className={`type ${type.type.name}`}
+              >
+                {type.type.name}
+              </span>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        <div className="grass-card">
+
+          <h3>{gastly.name}</h3>
+
+          <img
+            src={gastly.sprites.front_default}
+            alt="treecko"
+            className="pokemon"
+          />
+
+          <div className="stats">
+
+            <p>
+              <strong>HP:</strong>
+              {gastly.stats[0].base_stat}
+            </p>
+
+            <p>
+              <strong>Attack:</strong>
+              {gastly.stats[1].base_stat}
+            </p>
+
+            <p>
+              <strong>Defense:</strong>
+              {gastly.stats[2].base_stat}
+            </p>
+
+            <p>
+              <strong>Speed:</strong>
+              {gastly.stats[5].base_stat}
+            </p>
+
+          </div>
+
+          <div className="types">
+
+            {gastly.types.map((type, index) => (
 
               <span
                 key={index}
