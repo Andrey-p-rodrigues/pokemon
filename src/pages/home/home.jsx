@@ -45,14 +45,16 @@ function TrainerPage() {
           </p>
 
           <p>
-            <strong>Pokemons: 2</strong>
+            <strong>Pokemons: 3</strong>
           </p>
 
           <div className="pokebolas">
 
-            <PokeballButton to="/pokemon" />
+            <PokeballButton to="/pokemon/squirtle" />
 
-            <PokeballButton to="/pokemon2" />
+            <PokeballButton to="/pokemon/treecko" />
+
+            <PokeballButton to="/pokemon/gastly" />
 
           </div>
 

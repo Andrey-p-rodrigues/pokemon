@@ -1,5 +1,5 @@
-import './card.css';
-import soculos from '../../assets/soculos.png';
+import './card2.css';
+import treecko from '../../assets/t.png';
 import {useParams} from "react-router-dom";
 
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
@@ -32,18 +32,18 @@ function App() {
 
   return (
 
-    <div className="App1">
+    <div className="App2">
 
       <h1>Poke Card</h1>
 
       <div className="pokemon-container">
 
-        <div className="pokemon-card">
+        <div className="pokemon-card2">
 
           <h3>{pokemon.name}</h3>
 
           <img
-            src={pokemon.sprites.front_default}
+            src={pokemon.sprite.default}
             alt="squirtle"
             className="pokemon"
           />

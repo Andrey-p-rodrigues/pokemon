@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export function UseFetchPokemon(name) {
+export function UseFetchPokemon(poke) {
 
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ export function UseFetchPokemon(name) {
       try {
 
         const res = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${name}`
+          `https://pokeapi.co/api/v2/pokemon/${poke}`
         );
 
         setPokemon(res.data);
@@ -33,7 +33,7 @@ export function UseFetchPokemon(name) {
 
     getData();
 
-  }, [name]);
+  }, [pokemon]);
 
   return {
     pokemon,

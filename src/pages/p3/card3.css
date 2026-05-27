@@ -6,10 +6,10 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
 }
 
-.App1 {
+.App2 {
   width: 100%;
   min-height: 100vh;
 
@@ -17,24 +17,30 @@ body,
   flex-direction: column;
   align-items: center;
 
-  background-image: url('https://getwallpapers.com/wallpaper/full/9/6/2/384801.jpg');
+  text-align: center;
+
+  background-image: url('../../assets/tbg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.app1 h1 {
+.App2 h1 {
   font-size: 70px;
   font-family: 'Press Start 2P', cursive;
-  background: linear-gradient(103deg, #87CEFA,#ADD8E6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 
+  background: linear-gradient(
+    103deg,
+    rgb(31, 219, 6),
+    rgb(4, 34, 1)
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.app1 h3 {
-
+.App2 h3 {
   font-family: 'Press Start 2P', cursive;
 }
 
@@ -47,22 +53,21 @@ body,
   gap: 20px;
   margin-top: 30px;
   margin-bottom: 80px;
-  background: var(--bg-secondary);
   padding: 30px;
   border-radius: 20px;
 }
 
-.pokemon-card {
+.pokemon-card2 {
   font-family: 'Press Start 2P', cursive;
-  border: 25px solid var(--border);
   border-radius: 100px;
   box-shadow: 0px 4px 30px black;
   padding: 16px;
   height: 355px;
   width: 270px;
-  background: var(--card-bg);
   transition: all 0.2s ease;
-  background-color: #ADD8E6;
+
+  background-color: rgb(25, 173, 6);
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -78,7 +83,7 @@ body,
 .type {
   padding: 8px 16px;
   border-radius: 20px;
-  margin-top: 20px; 
+  margin-top: 20px;
   color: white;
   font-weight: bold;
   text-transform: capitalize;
@@ -103,9 +108,3 @@ body,
 .type.steel { background: #5E7164; }
 .type.fairy { background: #D685AD; }
 .type.normal { background: #B5B9C4; }
-
-.App1 {
-  text-align: center;
-}
-
-

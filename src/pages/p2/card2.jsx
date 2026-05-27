@@ -1,15 +1,18 @@
 import './card2.css';
 import treecko from '../../assets/t.png';
+import {useParams} from "react-router-dom";
 
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
 
 function App() {
 
+  const { id } = useParams()
+
   const {
     pokemon,
     loading,
     error
-  } = UseFetchPokemon("treecko");
+  } = UseFetchPokemon(id);
 
   if (loading) {
     return (
