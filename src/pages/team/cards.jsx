@@ -1,8 +1,5 @@
 import './cards.css';
 
-import soculos from '../../assets/soculos.png';
-import treecko2 from '../../assets/t.png';
-
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
 
 function App() {

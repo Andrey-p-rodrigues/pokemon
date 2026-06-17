@@ -9,7 +9,7 @@ body,
   min-height: 100vh;
 }
 
-.App1 {
+.App {
   width: 100%;
   min-height: 100vh;
 
@@ -23,7 +23,7 @@ body,
   background-repeat: no-repeat;
 }
 
-.app1 h1 {
+.app h1 {
   font-size: 70px;
   font-family: 'Press Start 2P', cursive;
   background: linear-gradient(103deg, #87CEFA,#ADD8E6);
@@ -33,7 +33,7 @@ body,
 
 }
 
-.app1 h3 {
+.app h3 {
 
   font-family: 'Press Start 2P', cursive;
 }
@@ -104,7 +104,7 @@ body,
 .type.fairy { background: #D685AD; }
 .type.normal { background: #B5B9C4; }
 
-.App1 {
+.App {
   text-align: center;
 }
 

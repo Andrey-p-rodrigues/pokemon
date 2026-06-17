@@ -1,98 +1,75 @@
-import './card2.css';
-import treecko from '../../assets/t.png';
-import {useParams} from "react-router-dom";
+import './card.css';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
 
-function App() {
-
-  const { id } = useParams()
+function App2() {
+  const { id } = useParams();
 
   const {
-    pokemon,
+    myPokemon,
     loading,
     error
   } = UseFetchPokemon(id);
 
   if (loading) {
-    return (
-      <div className="loader">
-        Carregando Pokédex...
-      </div>
-    );
+    return <div className="loader">Carregando Pokédex...</div>;
   }
 
   if (error) {
-    return (
-      <div className="error">
-        Ocorreu um erro inesperado
-      </div>
-    );
+    return <div className="error">Ocorreu um erro inesperado</div>;
+  }
+
+  if (!myPokemon) {
+    return <div className="loader">Carregando dados...</div>;
   }
 
   return (
-
     <div className="App2">
-
       <h1>Poke Card</h1>
 
       <div className="pokemon-container">
-
-        <div className="pokemon-card2">
-
-          <h3>{pokemon.name}</h3>
+        <div className="pokemon-card">
+          <h3>{myPokemon.nome}</h3>
 
           <img
-            src={treecko}
-            alt="squirtle"
+            src={myPokemon.imagem}
+            alt={myPokemon.nome}
             className="pokemon"
           />
 
           <div className="stats">
-
             <p>
-              <strong>HP:</strong>
-              {pokemon.stats[0].base_stat}
+              <strong>HP:</strong> {myPokemon.vida}
             </p>
 
             <p>
-              <strong>Attack:</strong>
-              {pokemon.stats[1].base_stat}
+              <strong>Attack:</strong> {myPokemon.ataque}
             </p>
 
             <p>
-              <strong>Defense:</strong>
-              {pokemon.stats[2].base_stat}
+              <strong>Defense:</strong> {myPokemon.defesa}
             </p>
 
             <p>
-              <strong>Speed:</strong>
-              {pokemon.stats[5].base_stat}
+              <strong>Speed:</strong> {myPokemon.velocidade}
             </p>
-
           </div>
 
           <div className="types">
-
-            {pokemon.types.map((type, index) => (
-
-              <span
-                key={index}
-                className={`type ${type.type.name}`}
-              >
-                {type.type.name}
-              </span>
-
-            ))}
-
+            <p>
+              {myPokemon.tipo}
+            </p>
           </div>
 
+          <p>
+            <strong>Evolução:</strong> {myPokemon.evolucao}
+          </p>
         </div>
-
       </div>
-
     </div>
   );
 }
 
-export default App;
+export default App2;

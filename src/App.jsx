@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
-import TrainerPage from "./pages/home/home";
+import Home from "./pages/home/home";
 import Pokemons from "./pages/team/cards"
 import Pokemon from "./pages/p1/card"
 
@@ -9,11 +9,12 @@ function App(){
    return(
        <BrowserRouter>
        <Routes>
-           <Route  path="/" exact element = {< TrainerPage />}/>
+
+           <Route  path="/" exact element = {< Home />}/>
            <Route  path="/pokemon/:id" element = {< Pokemon />} />
            <Route  path="/pokemons" element = {< Pokemons />} />
 
-           </Routes>
+        </Routes>
        </BrowserRouter>
    )
 }

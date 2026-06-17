@@ -8,7 +8,7 @@ import avatar from "../../assets/avatar.png";
 
 import PokeballButton from "../../components/Pokebolas/botaoPokebola";
 
-function TrainerPage() {
+function Home() {
 
   return (
 
@@ -76,4 +76,4 @@ function TrainerPage() {
 
 }
 
-export default TrainerPage;
+export default Home;
