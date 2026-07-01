@@ -1,10 +1,10 @@
-import './card3.css';
+import './card4.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
 
-function App3() {
+function App4() {
   const { id } = useParams();
 
   const {
@@ -26,7 +26,7 @@ function App3() {
   }
 
   return (
-    <div className="App3">
+    <div className="App4">
       <h1>Poke Card</h1>
 
       <div className="pokemon-container">
@@ -72,4 +72,4 @@ function App3() {
   );
 }
 
-export default App3;
+export default App4;

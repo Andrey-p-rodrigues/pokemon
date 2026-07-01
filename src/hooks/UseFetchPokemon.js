@@ -1,5 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { openDB } from "idb";
+
+
+const dbPromise = openDB("pokemon-db", 1, {
+  upgrade(db) {
+    if (!db.objectStoreNames.contains("pokemons")) {
+      db.createObjectStore("pokemons", { keyPath: "name" });
+    }
+  },
+});
+
+
+const getPokemonDB = async (nome) => {
+  const db = await dbPromise;
+  return db.get("pokemons", nome);
+};
+
+const savePokemonDB = async (pokemon) => {
+  const db = await dbPromise;
+  return db.put("pokemons", pokemon);
+};
 
 export function UseFetchPokemon(poke) {
   const [pokemon, setPokemon] = useState(null);
@@ -11,34 +32,41 @@ export function UseFetchPokemon(poke) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  
   useEffect(() => {
+
     const getData = async () => {
       try {
-        setLoading(true);
-        setError(false);
-
         const res = await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${poke}`
         );
-
         setPokemon(res.data);
       } catch (err) {
         console.error(err);
         setError(true);
-      } finally {
         setLoading(false);
       }
     };
 
-    if (poke) {
-      getData();
-    }
+
+    const checkDB = async () => {
+      const cashed = await getPokemonDB(poke);
+
+      if (!cashed) {
+        await getData();
+      } else {
+        setMyPokemon(cashed);
+        setLoading(false);
+      }
+    };
+
+
+    checkDB();
+
   }, [poke]);
 
-  
+
   useEffect(() => {
-    if (!pokemon) return;
+    if (!pokemon || myPokemon) return;
 
     const getSpecie = async () => {
       try {
@@ -50,11 +78,10 @@ export function UseFetchPokemon(poke) {
     };
 
     getSpecie();
-  }, [pokemon]);
+  }, [pokemon, myPokemon]);
 
-  
   useEffect(() => {
-    if (!specie) return;
+    if (!specie || myPokemon) return;
 
     const getEvolutions = async () => {
       try {
@@ -66,11 +93,10 @@ export function UseFetchPokemon(poke) {
     };
 
     getEvolutions();
-  }, [specie]);
-
+  }, [specie, myPokemon]);
 
   useEffect(() => {
-    if (!pokemon || !pokemon.types || pokemon.types.length === 0) {
+    if (!pokemon || !pokemon.types || pokemon.types.length === 0 || myPokemon) {
       return;
     }
 
@@ -108,11 +134,11 @@ export function UseFetchPokemon(poke) {
     } else if (type === "fire") {
       setMyType("fogo");
     }
-  }, [pokemon]);
-
+  }, [pokemon, myPokemon]);
 
   useEffect(() => {
     if (
+      myPokemon ||
       !pokemon ||
       !evolution ||
       !myType ||
@@ -126,17 +152,30 @@ export function UseFetchPokemon(poke) {
       return;
     }
 
-    setMyPokemon({
+    const newPokemon = {
+      name: pokemon.name,
       nome: pokemon.name,
       vida: pokemon.stats[0].base_stat,
       ataque: pokemon.stats[1].base_stat,
       tipo: myType,
       evolucao: evolution.chain.species.name,
-      imagem:
-        pokemon.sprites.other["official-artwork"].front_default,
+      imagem: pokemon.sprites.other["official-artwork"].front_default,
       imagemshiny: pokemon.sprites.front_shiny,
-    });
-  }, [pokemon, evolution, myType]);
+    };
+
+
+    const saveBanco = async () => {
+      try {
+        await savePokemonDB(newPokemon);
+      } catch (err) {
+        console.error("Erro ao salvar:", err);
+      }
+    };
+
+    saveBanco();
+    setMyPokemon(newPokemon);
+    setLoading(false);
+  }, [pokemon, evolution, myType, myPokemon]);
 
   return {
     myPokemon,

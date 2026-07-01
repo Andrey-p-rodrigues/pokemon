@@ -10,17 +10,15 @@ body,
 }
 
 .App {
-  width: 100%;
   min-height: 100vh;
+  text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  background-image: url('https://getwallpapers.com/wallpaper/full/9/6/2/384801.jpg');
+  background-image: url('../../assets/fundoP.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  padding: 40px 20px;
 }
 
 .app h1 {
@@ -62,7 +60,7 @@ body,
   width: 270px;
   background: var(--card-bg);
   transition: all 0.2s ease;
-  background-color: #ADD8E6;
+  background-color: rgb(255, 255, 255);
   margin-left: auto;
   margin-right: auto;
 }

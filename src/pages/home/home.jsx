@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import "./home.css";
 
@@ -45,7 +44,7 @@ function Home() {
           </p>
 
           <p>
-            <strong>Pokemons: 3</strong>
+            <strong>Pokemons: 4</strong>
           </p>
 
           <div className="pokebolas">
@@ -56,15 +55,9 @@ function Home() {
 
             <PokeballButton to="/pokemon/gastly" />
 
+            <PokeballButton to="/pokemon/sigilyph" />
+
           </div>
-
-          <button className="pokebola">
-
-            <Link to="/pokemons">
-              VER TIME INTEIRO
-            </Link>
-
-          </button>
 
         </div>
 

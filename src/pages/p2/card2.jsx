@@ -1,4 +1,4 @@
-import './card.css';
+import './card2.css';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
