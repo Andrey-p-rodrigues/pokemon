@@ -1,0 +1,98 @@
+/* DIREITA   */
+
+.direita {
+    border: none;
+    background: transparent;
+  
+    cursor: pointer;
+  
+    transition: transform 0.3s ease;
+  }
+  
+  .direita:hover {
+    transform: scale(1.1) rotate(10deg);
+  }
+  
+  .direita img {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* ESQUERDA */
+
+.esquerda {
+    border: none;
+    background: transparent;
+  
+    cursor: pointer;
+  
+    transition: transform 0.3s ease;
+  }
+  
+  .esquerda:hover {
+    transform: scale(1.1) rotate(10deg);
+  }
+  
+  .esquerda img {
+    width: 30px;
+    height: 30px;
+  }
+
+
+  
+  
+  /* DIREITA     */
+  
+  .Cdireita {
+    padding: 15px 25px;
+  
+    border: none;
+    border-radius: 12px;
+  
+    background: #ffffff;
+  
+    cursor: pointer;
+  
+    transition: 0.3s;
+  }
+  
+  .Cdireita:hover {
+    background: #ffffff;
+    transform: scale(1.05);
+  }
+  
+  .Cdireita a {
+    text-decoration: none;
+    color: white;
+  
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7px;
+  }
+
+  /* ESQUERDA */
+  
+  .Cesquerda {
+    padding: 15px 25px;
+  
+    border: none;
+    border-radius: 12px;
+  
+    background: #ff1c1c;
+  
+    cursor: pointer;
+  
+    transition: 0.3s;
+  }
+  
+  .Cesquerda:hover {
+    background: #d40000;
+    transform: scale(1.05);
+  }
+  
+  .Cesquerda a {
+    text-decoration: none;
+    color: white;
+  
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7px;
+  }

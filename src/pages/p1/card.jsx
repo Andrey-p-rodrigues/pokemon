@@ -1,6 +1,7 @@
 import './card.css';
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState} from "react";
+import Proximo from "../../components/Seta/direita";
 
 import { UseFetchPokemon } from "../../hooks/UseFetchPokemon";
 
@@ -67,6 +68,12 @@ function App() {
             <strong>Evolução:</strong> {myPokemon.evolucao}
           </p>
         </div>
+      </div>
+
+      <div className="proximo">
+
+      <Proximo to="/pokemon/treecko" />
+
       </div>
     </div>
   );

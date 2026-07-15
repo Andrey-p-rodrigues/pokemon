@@ -68,6 +68,8 @@ function App2() {
           </p>
         </div>
       </div>
+
+      <Proximo to="/pokemon/gastly" />
     </div>
   );
 }

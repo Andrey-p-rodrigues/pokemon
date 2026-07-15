@@ -131,7 +131,7 @@ export function UseFetchPokemon(poke) {
       type === "dragon"
     ) {
       setMyType("tempestade");
-    } else if (type === "fire") {
+    } else if (type === "fire") { 
       setMyType("fogo");
     }
   }, [pokemon, myPokemon]);
