@@ -57,7 +57,7 @@ function Home() {
 
             <PokeballButton to="/pokemon/sigilyph" />
 
-            <PokeballButton to="/pokemon/dratini" />
+            <PokeballButton to="/pokemon/Goomy" />
             
 
           </div>
