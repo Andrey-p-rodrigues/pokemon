@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 import Home from "./pages/home/home";
-import Pokemon from "./pages/p1/card"
+import Pokemon from "./pages/card/card"
 
 function App(){
    return(

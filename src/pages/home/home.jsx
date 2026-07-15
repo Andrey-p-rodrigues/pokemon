@@ -44,7 +44,7 @@ function Home() {
           </p>
 
           <p>
-            <strong>Pokemons: 4</strong>
+            <strong>Pokemons: 5</strong>
           </p>
 
           <div className="pokebolas">
@@ -56,6 +56,9 @@ function Home() {
             <PokeballButton to="/pokemon/gastly" />
 
             <PokeballButton to="/pokemon/sigilyph" />
+
+            <PokeballButton to="/pokemon/dratini" />
+            
 
           </div>
 

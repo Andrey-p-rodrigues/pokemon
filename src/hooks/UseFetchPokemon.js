@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { openDB } from "idb";
 
-
 const dbPromise = openDB("pokemon-db", 1, {
   upgrade(db) {
+
+    // Cria a tabela "pokemons" caso ela ainda não exista
     if (!db.objectStoreNames.contains("pokemons")) {
       db.createObjectStore("pokemons", { keyPath: "name" });
     }
   },
 });
-
 
 const getPokemonDB = async (nome) => {
   const db = await dbPromise;
@@ -20,6 +20,23 @@ const getPokemonDB = async (nome) => {
 const savePokemonDB = async (pokemon) => {
   const db = await dbPromise;
   return db.put("pokemons", pokemon);
+};
+
+// Retorna toda a cadeia evolutiva
+const getEvolutionNames = (chain) => {
+  const evolutions = [];
+
+  const traverse = (node) => {
+    evolutions.push(node.species.name);
+
+    node.evolves_to.forEach((evo) => {
+      traverse(evo);
+    });
+  };
+
+  traverse(chain);
+
+  return evolutions;
 };
 
 export function UseFetchPokemon(poke) {
@@ -32,8 +49,8 @@ export function UseFetchPokemon(poke) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  // Busca o Pokémon
   useEffect(() => {
-
     const getData = async () => {
       try {
         const res = await axios.get(
@@ -47,24 +64,21 @@ export function UseFetchPokemon(poke) {
       }
     };
 
-
     const checkDB = async () => {
-      const cashed = await getPokemonDB(poke);
+      const cached = await getPokemonDB(poke);
 
-      if (!cashed) {
+      if (!cached) {
         await getData();
       } else {
-        setMyPokemon(cashed);
+        setMyPokemon(cached);
         setLoading(false);
       }
     };
 
-
     checkDB();
-
   }, [poke]);
 
-
+  // Busca a espécie
   useEffect(() => {
     if (!pokemon || myPokemon) return;
 
@@ -80,10 +94,11 @@ export function UseFetchPokemon(poke) {
     getSpecie();
   }, [pokemon, myPokemon]);
 
+  // Busca a cadeia evolutiva
   useEffect(() => {
     if (!specie || myPokemon) return;
 
-    const getEvolutions = async () => {
+    const getEvolution = async () => {
       try {
         const res = await axios.get(specie.evolution_chain.url);
         setEvolution(res.data);
@@ -92,11 +107,17 @@ export function UseFetchPokemon(poke) {
       }
     };
 
-    getEvolutions();
+    getEvolution();
   }, [specie, myPokemon]);
 
+  // Define o tipo personalizado
   useEffect(() => {
-    if (!pokemon || !pokemon.types || pokemon.types.length === 0 || myPokemon) {
+    if (
+      !pokemon ||
+      !pokemon.types ||
+      pokemon.types.length === 0 ||
+      myPokemon
+    ) {
       return;
     }
 
@@ -131,11 +152,12 @@ export function UseFetchPokemon(poke) {
       type === "dragon"
     ) {
       setMyType("tempestade");
-    } else if (type === "fire") { 
+    } else if (type === "fire") {
       setMyType("fogo");
     }
   }, [pokemon, myPokemon]);
 
+  // Salva no IndexedDB
   useEffect(() => {
     if (
       myPokemon ||
@@ -157,12 +179,13 @@ export function UseFetchPokemon(poke) {
       nome: pokemon.name,
       vida: pokemon.stats[0].base_stat,
       ataque: pokemon.stats[1].base_stat,
+      defesa: pokemon.stats[3].base_stat,
+      velocidade: pokemon.stats[5].base_stat,
       tipo: myType,
-      evolucao: evolution.chain.species.name,
+      evolucao: getEvolutionNames(evolution.chain),
       imagem: pokemon.sprites.other["official-artwork"].front_default,
       imagemshiny: pokemon.sprites.front_shiny,
     };
-
 
     const saveBanco = async () => {
       try {
