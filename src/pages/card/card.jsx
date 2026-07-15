@@ -68,7 +68,7 @@ function App() {
         </div>
 
         <div className="evolution">
-          <h4>Evolução</h4>
+          <h4>Linha evolutiva</h4>
 
           <div className="evolution-chain">
 
